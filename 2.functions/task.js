@@ -32,7 +32,7 @@ function getArrayParams(...arr) {
 	return {
 		max: max,
 		min: min,
-		arg: Number(avg)
+		avg: Number(avg)
 	};
 
 
@@ -44,12 +44,12 @@ function getArrayParams(...arr) {
 
 
 function summElementsWorker(...arr) {
-	if (arr.length === 0) {
+	if (arr.length === 0) return 0;
 		let sum = 0;
 		for (let i = 0; i < arr.length; i++) {
 			sum += arr[i];
 		}
-	}
+
 	return sum;
 }
 
@@ -114,9 +114,7 @@ function averageEvenElementsWorker(...arr) {
 
 	if (countEvenElement === 0) return 0;
 
-	return (sumEvenElement / countEvenElement).toFixed(2);
-
-
+	return (sumEvenElement / countEvenElement);
 
 }
 
@@ -153,3 +151,4 @@ function makeWork(arrOfArr, func) {
 
 	return maxWorkerResult;
 }
+const arr = [[10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]];
