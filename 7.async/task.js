@@ -39,7 +39,7 @@ class AlarmClock {
 
 	start() {
 
-		if (this.intervalID) {
+		if (this.intervalId) {
 			return;
 		}
 
