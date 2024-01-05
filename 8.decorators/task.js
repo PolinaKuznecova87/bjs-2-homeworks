@@ -30,32 +30,26 @@ function cachingDecoratorNew(func) {
 	return wrapper;
 }
 
-
-
 //Задание 2
 
 function debounceDecoratorNew(func, delay) {
 	let timeoutId;
-	let count = 0; //количество апли
-	let allCount = 0; //количество всех оберток
+	let isTrottled = false;
 
 	function wrapper(...args) {
-		if (timeoutId) {
-			clearTimeout(timeoutId);
-			allCount++;
-		}
-
-		if (!timeoutId) {
-			func.apply(this, args);
-			count++;
-		}
+		clearTimeout(timeoutId);
 		timeoutId = setTimeout(() => {
-			count++;
-			func.apply(this, args);
-			wrapper.count = count;
+			func(args);
+			wrapper.count++;
 		}, delay);
-
-		wrapper.allCount = allCount;
+		if (!isTrottled) {
+			func(...args);
+			wrapper.count++;
+			isTrottled = true;
+		}
+		wrapper.allCount++;
 	}
+	wrapper.count = 0;
+	wrapper.allCount = 0;
 	return wrapper;
 }
